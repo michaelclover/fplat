@@ -16,3 +16,19 @@ def request_all_data():
 
     # return the json response.
     return response
+
+def request_player_data(player_id):
+
+    # get the player data.
+    response = requests.get("https://fantasy.premierleague.com/api/element-summary/{0}/".format(player_id))
+
+    # check the http error code is 200 (ok).
+    if response.status_code is not 200:
+        print("couldn't get data. http error code: {}".format(response.status_code))
+        sys.exit()
+
+    # convert to json
+    response = response.json()
+
+    # return the json response.
+    return response

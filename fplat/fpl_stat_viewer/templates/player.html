@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+
+<!-- the below excerpt safely parses the django json content into a javascript variable.
+This method should not be vulnerable to injection attacks. !-->
+
+<!--{{ player_data|json_script:"player_data" }}
+<script>
+  const my_data = JSON.parse(document.getElementById('player_data').textContent);
+</script>!-->
+
+{% endblock %}
+
+{% block body_content %}
+
+{% for history in player_data.history reversed %}
+
+  {% if forloop.counter <= 5 %}
+
+  {{history.fixture}}
+
+  {% endif %}
+
+{% endfor %}
+
+{% endblock %}

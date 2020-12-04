@@ -68,7 +68,7 @@
 
 {% for player in player_data.elements %}
 <tr>
-  <td>{{player.id}}</td>
+  <td><a href="{% url 'player' player.id %}">{{player.id}}</a></td>
   <td>{{player.web_name}}</td>
   <td>{{player.code}}</td>
   <td>{{player.first_name}}</td>
