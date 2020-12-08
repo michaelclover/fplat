@@ -1,4 +1,5 @@
 import requests
+import json
 import sys
 
 def request_all_data():
@@ -32,3 +33,10 @@ def request_player_data(player_id):
 
     # return the json response.
     return response
+
+def request_player_image(player_id):
+
+    all_data = request_all_data()
+    for element in all_data["elements"]:
+        if element["id"] == player_id:
+            return "https://resources.premierleague.com/premierleague/photos/players/110x140/p{0}.png".format(element["code"])

@@ -6,5 +6,9 @@ def index(request):
     return render(request, 'index.html', args)
 
 def player(request, player_id):
-    args = {"player_data": fplapi.request_player_data(player_id)}
+    player_data = fplapi.request_player_data(player_id)
+    player_img = fplapi.request_player_image(player_id)
+
+    args = {"player_data": player_data,
+            "player_img": player_img}
     return render(request, 'player.html', args)
