@@ -29,79 +29,81 @@
 
 {% block body_content %}
 
-<table id ="player_info">
-<tr>
- <th>ID</th>
- <th>Web Name</th>
- <th>Player ID</th>
- <th>Full Name</th>
- <th>Team</th>
- <th>News</th>
- <th>Position</th>
- <th>Current Price</th>
- <th>Value Season</th>
- <th>Cost Change from Start</th>
- <th>Percentage selected by</th>
- <th>Transfers In</th>
- <th>Transfers Out</th>
- <th>Total Points</th>
- <th>Points Per Game</th>
- <th>Minutes</th>
- <th>Goals Scored</th>
- <th>Assists</th>
- <th>Clean Sheets</th>
- <th>Goals Conceded</th>
- <th>Own Goals</th>
- <th>Penalties Saved</th>
- <th>Penalties Missed</th>
- <th>Yellow Cards</th>
- <th>Red Cards</th>
- <th>Saves</th>
- <th>Bonus Points</th>
- <th>Bonus Point System Score</th>
- <th>Influence</th>
- <th>Creativity</th>
- <th>Threat</th>
- <th>ICT Index</th>
- <th>EA Index</th>
-</tr>
+<div class="container">
 
-{% for player in player_data.elements %}
-<tr>
-  <td><a href="{% url 'player' player.id %}">{{player.id}}</a></td>
-  <td>{{player.web_name}}</td>
-  <td>{{player.code}}</td>
-  <td>{{player.first_name}}</td>
-  <td>{{player.team_code}}</td>
-  <td>{{player.news}}</td>
-  <td>{{player.element_type}}</td>
-  <td>{{player.now_cost}}</td>
-  <td>{{player.value_season}}</td>
-  <td>{{player.cost_change_start}}</td>
-  <td>{{player.selected_by_percent}}</td>
-  <td>{{player.transfers_in}}</td>
-  <td>{{player.transfers_out}}</td>
-  <td>{{player.total_points}}</td>
-  <td>{{player.points_per_game}}</td>
-  <td>{{player.minutes}}</td>
-  <td>{{player.goals_scored}}</td>
-  <td>{{player.assists}}</td>
-  <td>{{player.clean_sheets}}</td>
-  <td>{{player.goals_conceded}}</td>
-  <td>{{player.own_goals}}</td>
-  <td>{{player.penalties_saved}}</td>
-  <td>{{player.penalties_missed}}</td>
-  <td>{{player.yellow_cards}}</td>
-  <td>{{player.red_cards}}</td>
-  <td>{{player.saves}}</td>
-  <td>{{player.bonus}}</td>
-  <td>{{player.bps}}</td>
-  <td>{{player.influence}}</td>
-  <td>{{player.creativity}}</td>
-  <td>{{player.threat}}</td>
-  <td>{{player.ict_index}}</td>
-  <td>{{player.ea_index}}</td>
-</tr>
-{% endfor %}
+  <div class="table-responsive table table-bordered">
+
+    <table class="table" id="playerStatsTable">
+      <tr>
+       <th>Player</th>
+       <th>Team</th>
+       <th>News</th>
+       <th>Position</th>
+       <th>Start Price</th>
+       <th>Current Price</th>
+       <th>Change</th>
+       <th>Effective Value</th>
+       <th>TSB</th>
+       <th>Total Transfers In</th>
+       <th>Total Transfers Out</th>
+       <th>Total Points</th>
+       <th>Average PPG</th>
+       <th>Minutes</th>
+       <th>Goals Scored</th>
+       <th>Assists</th>
+       <th>Clean Sheets</th>
+       <th>Goals Conceded</th>
+       <th>Own Goals</th>
+       <th>Penalties Saved</th>
+       <th>Penalties Missed</th>
+       <th>Yellow Cards</th>
+       <th>Red Cards</th>
+       <th>Saves</th>
+       <th>Total Bonus Points</th>
+      </tr>
+
+      {% for player in player_data.elements %}
+      {% if player.alert == "red" %}
+      <tr class="table-danger">
+      {% elif player.alert == "yellow" %}
+      <tr class="table-warning">
+      {% else %}
+      <tr>
+      {% endif %}
+        <td><a href="{% url 'player' player.id %}">{{player.web_name}}</a></td>
+        <td>{{player.team_code}}</td>
+        <td>{{player.news}}</td>
+        <td>{{player.element_type}}</td>
+        <td>£{{player.start_price}}</td>
+        <td>£{{player.now_cost}}</td>
+        <td>{{player.cost_change_start}}</td>
+        <td>{{player.value_season}}</td>
+        <td>{{player.selected_by_percent}}%</td>
+        <td>{{player.transfers_in}}</td>
+        <td>{{player.transfers_out}}</td>
+        <td>{{player.total_points}}</td>
+        <td>{{player.points_per_game}}</td>
+        <td>{{player.minutes}}</td>
+        <td>{{player.goals_scored}}</td>
+        <td>{{player.assists}}</td>
+        <td>{{player.clean_sheets}}</td>
+        <td>{{player.goals_conceded}}</td>
+        <td>{{player.own_goals}}</td>
+        <td>{{player.penalties_saved}}</td>
+        <td>{{player.penalties_missed}}</td>
+        <td>{{player.yellow_cards}}</td>
+        <td>{{player.red_cards}}</td>
+        <td>{{player.saves}}</td>
+        <td>{{player.bonus}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer_content %}
 
 {% endblock %}

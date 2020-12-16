@@ -12,8 +12,34 @@ def request_all_data():
         print("couldn't get data. http error code: {}".format(response.status_code))
         sys.exit()
 
-    # convert to json.
+    # convert response to json.
     response = response.json()
+
+    # convert the team IDs to team names for displaying.
+    teamMap = {}
+    for teams in response["teams"]:
+        if teams["code"] not in teamMap:
+            teamMap[teams["code"]] = teams["name"]
+
+    # convert the position IDs to position names for displaying.
+    positionMap = {}
+    for position in response["element_types"]:
+        if position["id"] not in positionMap:
+            positionMap[position["id"]] = position["singular_name"]
+
+    # update the player json with better formatted data from above etc.
+    for element in response["elements"]:
+        element["team_code"] = teamMap[element["team_code"]]
+        element["element_type"] = positionMap[element["element_type"]]
+        element["start_price"] = element["now_cost"] - element["cost_change_start"]
+        element["start_price"] = str(element["start_price"])[:-1] + "." + str(element["start_price"])[-1]
+        element["now_cost"] = str(element["now_cost"])[:-1] + "." + str(element["now_cost"])[-1] # convert int to decimal to reflect player price. e.g. 69 to 6.9. for £6.9 million.
+
+        # check the news strings to determine whether we should signal the view to red or yellow flag players.
+        if "Unknown return date".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Chance of playing".upper() in element["news"].upper():
+            element["alert"] = "yellow"
 
     # return the json response.
     return response
@@ -28,7 +54,7 @@ def request_player_data(player_id):
         print("couldn't get data. http error code: {}".format(response.status_code))
         sys.exit()
 
-    # convert to json
+    # convert response to json
     response = response.json()
 
     # return the json response.
@@ -36,7 +62,8 @@ def request_player_data(player_id):
 
 def request_player_image(player_id):
 
-    all_data = request_all_data()
-    for element in all_data["elements"]:
+    # search for the player_id using the player_code in order to format the img url, then return it.
+    response = request_all_data()
+    for element in response["elements"]:
         if element["id"] == player_id:
             return "https://resources.premierleague.com/premierleague/photos/players/110x140/p{0}.png".format(element["code"])
