@@ -40,6 +40,22 @@ def request_all_data():
             element["alert"] = "red"
         elif "Chance of playing".upper() in element["news"].upper():
             element["alert"] = "yellow"
+        elif "Transferred to".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Suspended until".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Expected back".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Left the club".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "on a permanent deal".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Contract terminated".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Contract expired".upper() in element["news"].upper():
+            element["alert"] = "red"
+        elif "Contract ended".upper() in element["news"].upper():
+            element["alert"] = "red"
 
     # return the json response.
     return response

@@ -2,27 +2,14 @@
 
 {% block head_content %}
 
-<title> fplat - Player Statistics </title>
+<title>fplat - Player Statistics</title>
 
 <style>
-#player_info {
- font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
- border-collapse: collapse;
- width: 100%;
-}
-#player_info td, #player_info th {
- border: 1px solid #ddd;
- padding: 8px;
-}
-#player_info tr:nth-child(even){background-color: #f2f2f2;}
-#player_info tr:hover {background-color: #ddd;}
-#player_info th {
- padding-top: 12px;
- padding-bottom: 12px;
- text-align: left;
- background-color: #242424;
- color: white;
-}
+
+  th {
+    cursor: pointer;
+  }
+
 </style>
 
 {% endblock %}
@@ -105,5 +92,24 @@
 {% endblock %}
 
 {% block footer_content %}
+
+<script>
+
+  const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+  const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+      v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx).replace('£', '').replace('%', ''), getCellValue(asc ? b : a, idx).replace('£', '').replace('%', ''));
+
+  document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+      document.querySelectorAll('th').forEach(th => th.innerText = th.innerText.replace('<', '').replace('>', ''));
+      this.asc ? th.innerText = th.innerText.replace('<', '').replace('>', '') + " >" : th.innerText = th.innerText.replace('<', '').replace('>', '') + " <";
+      const table = th.closest('table');
+      Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+          .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+          .forEach(tr => table.appendChild(tr) );
+  })));
+
+</script>
 
 {% endblock %}
