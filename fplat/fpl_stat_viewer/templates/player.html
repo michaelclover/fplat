@@ -18,25 +18,80 @@ This method should not be vulnerable to injection attacks. !-->
 
 {% block body_content %}
 
-{% for history in player_data.history reversed %}
-
-  {% if forloop.counter <= 5 %}
-
-  {{history.fixture}}
-
-  {% endif %}
-
-{% endfor %}
-
-<img src="{{player_img}}" class="img-thumbnail">
-
 <div class="container">
-  <div class="container-item">1</div>
-  <div class="container-item">2</div>
-  <div class="container-item">3</div>
-  <div class="container-item">4</div>
-  <div class="container-item">5</div>
-  <div class="container-item">6</div>
+  <div class="container-item">
+
+  </div>
+
+  <div class="container-item">
+    <h1>{{player_data.element.second_name}}</h1>
+    <img src="{{player_data.img_url}}" class="img-rounded">
+  </div>
+
+  <div class="container-item">
+
+  </div>
+
+  <div class="container-item container-item-bottom">
+    <div class="table-responsive table table-bordered">
+      <table class="table" id="playerStatsTable">
+        <tr>
+          <th>Fixture</th>
+          <th>Date</th>
+          <th>Minutes</th>
+          <th>Points</th>
+          <th>Goals</th>
+          <th>Assists</th>
+        </tr>
+        {% for history in player_data.history reversed %}
+        {% if forloop.counter <= 5 %}
+        <tr>
+          <td>{{player_data.element.team}} vs {{history.opponent_team}}</td>
+          <td>{{history.kickoff_time}}</td>
+          <td>{{history.minutes}}</td>
+          <td>{{history.total_points}}</td>
+          <td>{{history.goals_scored}}</td>
+          <td>{{history.assist}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <div class="container-item container-item-bottom">
+    <div class="table-responsive table table-bordered">
+      <table class="table" id="playerStatsTable">
+        <tr>
+          <th>Fixture</th>
+          <th>Date</th>
+          <th>Minutes</th>
+          <th>Points</th>
+          <th>Goals</th>
+          <th>Assists</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="container-item container-item-bottom">
+    <div class="table-responsive table table-bordered">
+      <table class="table" id="playerStatsTable">
+        <tr>
+          <th>Fixture</th>
+          <th>Date</th>
+          <th>Minutes</th>
+          <th>Points</th>
+          <th>Goals</th>
+          <th>Assists</th>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
+
+{% endblock %}
+
+{% block footer_content %}
 
 {% endblock %}
