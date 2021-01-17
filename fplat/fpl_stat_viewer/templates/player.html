@@ -18,74 +18,78 @@ This method should not be vulnerable to injection attacks. !-->
 
 {% block body_content %}
 
-<div class="container">
-  <div class="container-item">
+<div class="container-fluid">
+  <div class="row">
+    <div class="container-item col-sm-4">
 
-  </div>
+    </div>
 
-  <div class="container-item">
-    <h1>{{player_data.element.second_name}}</h1>
-    <img src="{{player_data.img_url}}" class="img-rounded">
-  </div>
+    <div class="container-item col-sm-4">
+      <h1>{{player_data.element.second_name}}</h1>
+      <img src="{{player_data.img_url}}" class="img-rounded">
+    </div>
 
-  <div class="container-item">
+    <div class="container-item col-sm-4">
 
-  </div>
-
-  <div class="container-item container-item-bottom">
-    <div class="table-responsive table table-bordered">
-      <table class="table" id="playerStatsTable">
-        <tr>
-          <th>Fixture</th>
-          <th>Date</th>
-          <th>Minutes</th>
-          <th>Points</th>
-          <th>Goals</th>
-          <th>Assists</th>
-        </tr>
-        {% for history in player_data.history reversed %}
-        {% if forloop.counter <= 5 %}
-        <tr>
-          <td>{{player_data.element.team}} vs {{history.opponent_team}}</td>
-          <td>{{history.kickoff_time}}</td>
-          <td>{{history.minutes}}</td>
-          <td>{{history.total_points}}</td>
-          <td>{{history.goals_scored}}</td>
-          <td>{{history.assist}}</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-      </table>
     </div>
   </div>
 
-  <div class="container-item container-item-bottom">
-    <div class="table-responsive table table-bordered">
-      <table class="table" id="playerStatsTable">
-        <tr>
-          <th>Fixture</th>
-          <th>Date</th>
-          <th>Minutes</th>
-          <th>Points</th>
-          <th>Goals</th>
-          <th>Assists</th>
-        </tr>
-      </table>
+  <div class="row">
+    <div class="container-item col-sm-4 container-item-bottom">
+      <div class="table-responsive table table-bordered">
+        <table class="table" id="playerStatsTable">
+          <tr>
+            <th>Fixture</th>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Points</th>
+            <th>Goals</th>
+            <th>Assists</th>
+          </tr>
+          {% for history in player_data.history reversed %}
+          {% if forloop.counter <= 5 %}
+          <tr>
+            <td>{{player_data.element.team}} vs {{history.opponent_team}}</td>
+            <td>{{history.kickoff_time}}</td>
+            <td>{{history.minutes}}</td>
+            <td>{{history.total_points}}</td>
+            <td>{{history.goals_scored}}</td>
+            <td>{{history.assist}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="container-item container-item-bottom">
-    <div class="table-responsive table table-bordered">
-      <table class="table" id="playerStatsTable">
-        <tr>
-          <th>Fixture</th>
-          <th>Date</th>
-          <th>Minutes</th>
-          <th>Points</th>
-          <th>Goals</th>
-          <th>Assists</th>
-        </tr>
-      </table>
+    <div class="container-item col-sm-4 container-item-bottom">
+      <div class="table-responsive table table-bordered">
+        <table class="table" id="playerStatsTable">
+          <tr>
+            <th>Fixture</th>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Points</th>
+            <th>Goals</th>
+            <th>Assists</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container-item col-sm-4 container-item-bottom">
+      <div class="table-responsive table table-bordered">
+        <table class="table" id="playerStatsTable">
+          <tr>
+            <th>Fixture</th>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Points</th>
+            <th>Goals</th>
+            <th>Assists</th>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
