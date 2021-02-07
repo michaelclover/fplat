@@ -1,8 +1,10 @@
+from django.conf import settings
+
 import requests
 import json
 import sys
-import os
 
+# gets the latest data from the FPL API and tacks on a bunch of other usefuls for views to use.
 def get_fpl_latest():
 
     # get the main data, including data from this season and historic data.
@@ -57,6 +59,6 @@ def get_fpl_latest():
         elif "Chance of playing".upper() in element["news"].upper():
             element["alert"] = "yellow"
 
-    # write to file
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/fplapi.json'), 'w') as f:
-        json.dump(response, f, ensure_ascii=False)
+    # write to file.
+    with open("{0}/data/fplapi.json".format(settings.BASE_DIR), 'w') as json_file:
+        json.dump(response, json_file, ensure_ascii=False)

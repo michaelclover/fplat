@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_crontab',
     'fpl_stat_viewer',
+    'understat',
 ]
 
 MIDDLEWARE = [

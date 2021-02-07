@@ -1,9 +1,18 @@
+from django.conf import settings
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
 from fpl_stat_viewer.api import fplapi
 
+import json
+
 def index(request):
-    args = {"player_data": fplapi.request_all_data()}
-    return render(request, 'index.html', args)
+    try:
+        with open("{0}/data/fplapi.json".format(settings.BASE_DIR)) as json_file:
+            data = json.load(json_file)
+            args = {"player_data": data}
+            return render(request, 'index.html', args)
+    except IOError:
+        return HttpResponseNotFound("404 - Couldn't retrieve data.")
 
 def player(request, player_id):
     args = {"player_data": fplapi.request_player_data(player_id)}
