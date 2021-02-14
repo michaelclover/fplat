@@ -10,9 +10,8 @@ This method should not be vulnerable to injection attacks. !-->
   const my_data = JSON.parse(document.getElementById('player_data').textContent);
 </script>!-->
 
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'fsv.css' %}">
+{% load sass_tags %}
+<link href="{% sass_src 'fsv.scss' %}" rel="stylesheet" type="text/css" />
 
 {% endblock %}
 
@@ -25,7 +24,7 @@ This method should not be vulnerable to injection attacks. !-->
     </div>
 
     <div class="container-item col-sm-4">
-      <h1>{{player_data.element.second_name}}</h1>
+      <h1>{{player_data.element.first_name}} {{player_data.element.second_name}}</h1>
       <img src="{{player_data.img_url}}" class="img-rounded">
     </div>
 

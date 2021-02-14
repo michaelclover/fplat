@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django_crontab',
     'fpl_stat_viewer',
     'understat',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +123,22 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'scss'),
+    os.path.join(BASE_DIR, 'fpl_stat_viewer/scss'),
+)
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR,'static/css')
+SASS_PROCESSOR_ROOT = STATIC_ROOT
