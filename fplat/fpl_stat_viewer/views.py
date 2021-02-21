@@ -15,5 +15,6 @@ def index(request):
         return HttpResponseNotFound("404 - Couldn't retrieve data.")
 
 def player(request, player_id):
-    args = {"player_data": fplapi.request_player_data(player_id)}
+    args = {"player_data": fplapi.request_player_data(player_id),
+            "player_plot": fplapi.request_player_data_as_plot(player_id)}
     return render(request, 'player.html', args)

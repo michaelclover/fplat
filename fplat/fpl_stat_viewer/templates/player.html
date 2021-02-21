@@ -18,23 +18,26 @@ This method should not be vulnerable to injection attacks. !-->
 {% block body_content %}
 
 <div class="container-fluid">
+  <div class="pb-4 mt-4 mb-2 border-bottom text-center">
+    <h2>{{player_data.element.second_name}}</h2>
+  </div>
   <div class="row">
     <div class="container-item col-sm-4">
-
+      <img src="data:image/png;base64,{{ player_plot }}" alt="">
     </div>
 
     <div class="container-item col-sm-4">
-      <h1>{{player_data.element.first_name}} {{player_data.element.second_name}}</h1>
-      <img src="{{player_data.img_url}}" class="img-rounded">
+      <img src="data:image/png;base64,{{ player_plot }}" alt="">
     </div>
 
     <div class="container-item col-sm-4">
-
+      <img src="data:image/png;base64,{{ player_plot }}" alt="">
     </div>
   </div>
 
   <div class="row">
     <div class="container-item col-sm-4 container-item-bottom">
+      <p> Last 5 Fixtures </p>
       <div class="table-responsive table table-bordered">
         <table class="table" id="playerStatsTable">
           <tr>
@@ -53,7 +56,7 @@ This method should not be vulnerable to injection attacks. !-->
             <td>{{history.minutes}}</td>
             <td>{{history.total_points}}</td>
             <td>{{history.goals_scored}}</td>
-            <td>{{history.assist}}</td>
+            <td>{{history.assists}}</td>
           </tr>
           {% endif %}
           {% endfor %}
@@ -62,6 +65,7 @@ This method should not be vulnerable to injection attacks. !-->
     </div>
 
     <div class="container-item col-sm-4 container-item-bottom">
+      <p> Best 5 Performances </p>
       <div class="table-responsive table table-bordered">
         <table class="table" id="playerStatsTable">
           <tr>
@@ -72,11 +76,13 @@ This method should not be vulnerable to injection attacks. !-->
             <th>Goals</th>
             <th>Assists</th>
           </tr>
+          
         </table>
       </div>
     </div>
 
     <div class="container-item col-sm-4 container-item-bottom">
+      <p> Something 5 Something </p>
       <div class="table-responsive table table-bordered">
         <table class="table" id="playerStatsTable">
           <tr>
