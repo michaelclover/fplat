@@ -1,0 +1,70 @@
+@import '../colours';
+@import '../fonts';
+
+/* {
+    border: 1px solid black;
+}*/
+
+/*html {
+    overflow-y: scroll;
+}*/
+
+html, body {
+    font-family: $primary-font;
+    height: 100%;
+    margin: 0;
+    width: 100vw;
+}
+
+header, main {
+    text-align: center;
+}
+
+nav {
+    background-color: $bar-background-colour;
+    z-index: 1;
+    top: 0;
+    position: sticky;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1em 1em;
+    color: $bar-font-colour;
+}
+
+nav ul li a:hover {
+    background-color: $bar-hover-colour;
+}
+
+footer {
+    background-color: $bar-background-colour;
+    color: $bar-font-colour;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    padding: .5em .5em;
+}
+
+article {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+
+    p {
+        text-align: left;
+    }
+}

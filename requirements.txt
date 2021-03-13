@@ -13,6 +13,7 @@ django-appconf==1.0.4
 django-compressor==2.4
 django-crontab==0.7.1
 django-sass-processor==0.8.2
+django-settings-export==1.2.1
 idna==2.10
 importlib-metadata==3.4.0
 iniconfig==1.1.1

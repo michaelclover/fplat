@@ -6,8 +6,21 @@
 
 <style>
 
-  th {
+  thead {
     cursor: pointer;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    z-index: 2;
+  }
+
+  .sticky-col {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: white;
   }
 
 </style>
@@ -16,78 +29,79 @@
 
 {% block body_content %}
 
-<div class="container">
-
-  <div class="table-responsive table table-bordered">
-
+  <div class="table table-bordered">
     <table class="table" id="playerStatsTable">
-      <tr>
-       <th>Player</th>
-       <th>Team</th>
-       <th>News</th>
-       <th>Position</th>
-       <th>Start Price</th>
-       <th>Current Price</th>
-       <th>Change</th>
-       <th>Effective Value</th>
-       <th>TSB</th>
-       <th>Total Transfers In</th>
-       <th>Total Transfers Out</th>
-       <th>Total Points</th>
-       <th>Average PPG</th>
-       <th>Minutes</th>
-       <th>Goals Scored</th>
-       <th>Assists</th>
-       <th>Clean Sheets</th>
-       <th>Goals Conceded</th>
-       <th>Own Goals</th>
-       <th>Penalties Saved</th>
-       <th>Penalties Missed</th>
-       <th>Yellow Cards</th>
-       <th>Red Cards</th>
-       <th>Saves</th>
-       <th>Total Bonus Points</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Team</th>
+          <th>News</th>
+          <th>Position</th>
+          <th>Start Price</th>
+          <th>Current Price</th>
+          <th>Change</th>
+          <th>Effective Value</th>
+          <th>TSB</th>
+          <th>Total Transfers In</th>
+          <th>Total Transfers Out</th>
+          <th>Total Points</th>
+          <th>Average PPG</th>
+          <th>Minutes</th>
+          <th>Goals Scored</th>
+          <th>Assists</th>
+          <th>Clean Sheets</th>
+          <th>Goals Conceded</th>
+          <th>Own Goals</th>
+          <th>Penalties Saved</th>
+          <th>Penalties Missed</th>
+          <th>Yellow Cards</th>
+          <th>Red Cards</th>
+          <th>Saves</th>
+          <th>Total Bonus Points</th>
+        </tr>
+      </thead>
 
-      {% for player in player_data.elements %}
-      {% if player.alert == "red" %}
-      <tr class="table-danger">
-      {% elif player.alert == "yellow" %}
-      <tr class="table-warning">
-      {% else %}
-      <tr>
-      {% endif %}
-        <td><a href="{% url 'player' player.id %}">{{player.web_name}}</a></td>
-        <td>{{player.team_code}}</td>
-        <td>{{player.news}}</td>
-        <td>{{player.element_type}}</td>
-        <td>£{{player.start_price}}</td>
-        <td>£{{player.now_cost}}</td>
-        <td>{{player.cost_change_start}}</td>
-        <td>{{player.value_season}}</td>
-        <td>{{player.selected_by_percent}}%</td>
-        <td>{{player.transfers_in}}</td>
-        <td>{{player.transfers_out}}</td>
-        <td>{{player.total_points}}</td>
-        <td>{{player.points_per_game}}</td>
-        <td>{{player.minutes}}</td>
-        <td>{{player.goals_scored}}</td>
-        <td>{{player.assists}}</td>
-        <td>{{player.clean_sheets}}</td>
-        <td>{{player.goals_conceded}}</td>
-        <td>{{player.own_goals}}</td>
-        <td>{{player.penalties_saved}}</td>
-        <td>{{player.penalties_missed}}</td>
-        <td>{{player.yellow_cards}}</td>
-        <td>{{player.red_cards}}</td>
-        <td>{{player.saves}}</td>
-        <td>{{player.bonus}}</td>
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for player in player_data.elements %}
+        {% if player.alert == "red" %}
+        <tr class="table-danger">
+        {% elif player.alert == "yellow" %}
+        <tr class="table-warning">
+        {% else %}
+        <tr>
+        {% endif %}
+          <td class="sticky-col"><a href="{% url 'player' player.id %}">{{player.web_name}}</a></td>
+          <td>{{player.team_code}}</td>
+          <td>{{player.news}}</td>
+          <td>{{player.element_type}}</td>
+          <td>£{{player.start_price}}</td>
+          <td>£{{player.now_cost}}</td>
+          <td>{{player.cost_change_start}}</td>
+          <td>{{player.value_season}}</td>
+          <td>{{player.selected_by_percent}}%</td>
+          <td>{{player.transfers_in}}</td>
+          <td>{{player.transfers_out}}</td>
+          <td>{{player.total_points}}</td>
+          <td>{{player.points_per_game}}</td>
+          <td>{{player.minutes}}</td>
+          <td>{{player.goals_scored}}</td>
+          <td>{{player.assists}}</td>
+          <td>{{player.clean_sheets}}</td>
+          <td>{{player.goals_conceded}}</td>
+          <td>{{player.own_goals}}</td>
+          <td>{{player.penalties_saved}}</td>
+          <td>{{player.penalties_missed}}</td>
+          <td>{{player.yellow_cards}}</td>
+          <td>{{player.red_cards}}</td>
+          <td>{{player.saves}}</td>
+          <td>{{player.bonus}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
   </div>
-</div>
+
 
 {% endblock %}
 

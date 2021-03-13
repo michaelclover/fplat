@@ -1,0 +1,10 @@
+body {
+    display: grid;
+    grid-template-columns: (12, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 1em;
+}
+
+nav, header, main, footer {
+    grid-column: 1 / -1;
+}

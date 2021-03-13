@@ -25,7 +25,7 @@ SECRET_KEY = '(f^=y@#x!@^4et$-qpijt5ut#zz_d34fo715jvxhkh192m)9xi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "192.168.0.19", "127.0.0.1"]
 
 
 # Application definition
@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -142,3 +143,9 @@ STATICFILES_FINDERS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR,'static/css')
 SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+WEBSITE_NAME = 'Fantasy Premier League Analysis Tools'
+
+SETTINGS_EXPORT = [
+    'WEBSITE_NAME',
+]

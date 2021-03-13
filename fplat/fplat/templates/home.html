@@ -1,1 +1,41 @@
-<h1> Welcome to Fantasy Premier League Analysis Tools! </h1>
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="content">
+    <meta name="author" content="author">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{settings.WEBSITE_NAME}} - Home</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
+
+    {% load sass_tags %}
+    <link href="{% sass_src 'home/grid.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'home/flex.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'common/theme.scss' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'articles' %}">Articles</a></li>
+            <li><a href="{% url 'index' %}">Player Overview</a></li>
+        </ul>
+    </nav>
+    <main>
+            <h1>Fantasy Premier League Analysis Tools</h1>
+            <p>A suite of tools to assist you with <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a> team selection.</p>
+            <p>This website is open source and hosted on <a href="https://github.com/michaelclover/fplat">Github.</a></p>
+    </main>
+    <footer>
+        <div id="copyright">
+            Copyright&#169; 2021 <a href="https://github.com/michaelclover">Michael Clover</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('stats/', include('fpl_stat_viewer.urls')),
     path('', views.home, name='home'),
+    path('articles', views.articles, name='articles'),
 ]
